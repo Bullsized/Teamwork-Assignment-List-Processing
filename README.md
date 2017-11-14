@@ -5,8 +5,8 @@
 <h3>Participants</h3>
 <ol>
 <li><strong>Кирил Георгиев</strong> - <a href="https://github.com/hammer4">GitHub link</a></li>
-<li><strong>Тони Димитров</strong></li>
-<li><strong>Николай Рогчев</strong></li>
+<li><strong>Тони Димитров</strong> - <a href="https://github.com/tonydimitrov">GitHub link</a></li>
+<li><strong>Николай Рогчев</strong> - <a href="https://github.com/nikolayrogchev">GitHub link</a></li>
 <li><strong>Bullsized</strong> - <a href="https://github.com/Bullsized">GitHub link</a></li>
 </ol>
 
