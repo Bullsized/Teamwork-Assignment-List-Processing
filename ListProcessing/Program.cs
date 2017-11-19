@@ -24,6 +24,10 @@ namespace ListProcessing
                         case "prepend":
                             Console.WriteLine(ExecutePrepend(list, tokens));
                             break;
+                        case "reverse":
+                            list.Reverse();
+                            Console.WriteLine(list);
+                            break;
                         default:
                             throw new Exception("Error: invalid command");
                     }
