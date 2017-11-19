@@ -20,6 +20,8 @@ namespace ListProcessing
             return this.ToString();
         }
 
+    
+
         public override string ToString()
         {
             return String.Join(" ", this);
