@@ -34,6 +34,18 @@ namespace ListProcessing
                         case "delete":
                             Console.WriteLine(ExecuteDelete(list, tokens));
                             break;
+                        case "roll left":
+                            Console.WriteLine(list.RollLeft());
+                            break;
+                        case "roll right":
+                            Console.WriteLine(list.RollRight());
+                            break;
+                        case "sort":
+                            SortingCheckAndPrint(list, tokens);
+                            break;
+                        case "count":
+                            Console.WriteLine(CountTheWord(list, tokens[1]));
+                            break;
                         default:
                             throw new Exception("Error: invalid command");
                     }
@@ -45,6 +57,29 @@ namespace ListProcessing
             }
 
             Console.WriteLine("Finished");
+        }
+
+        private static void SortingCheckAndPrint(CustomList<string> list, string[] tokens)
+        {
+            if (tokens.Length > 0)
+            {
+                Console.WriteLine("Error: invalid command parameters");
+            }
+            list.Sort();
+            Console.WriteLine(list);
+        }
+
+        private static int CountTheWord(CustomList<string> list, string wordNeeded)
+        {
+            int returnCounter = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == wordNeeded)
+                {
+                    returnCounter++;
+                }
+            }
+            return returnCounter;
         }
 
         static string ExexuteAppend(CustomList<string> list, string[] tokens)
@@ -76,7 +111,7 @@ namespace ListProcessing
 
             string receivedIndex = tokens[1];
             int index;
-            if (!int.TryParse(receivedIndex, out index) || (index < 0 || index > list.Count -1))
+            if (!int.TryParse(receivedIndex, out index) || (index < 0 || index > list.Count - 1))
             {
                 throw new ArgumentException($"Error: invalid index {receivedIndex}");
             }
