@@ -20,7 +20,11 @@ namespace ListProcessing
             return this.ToString();
         }
 
-    
+        public string Delete(int index)
+        {
+            this.RemoveAt(index);
+            return this.ToString();
+        }
 
         public override string ToString()
         {

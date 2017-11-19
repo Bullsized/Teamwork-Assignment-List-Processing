@@ -32,7 +32,7 @@ namespace ListProcessing
                             Console.WriteLine(ExacuteInsert(list, tokens));
                             break;
                         case "delete":
-                            // TODO 
+                            Console.WriteLine(ExecuteDelete(list, tokens));
                             break;
                         default:
                             throw new Exception("Error: invalid command");
@@ -83,6 +83,25 @@ namespace ListProcessing
 
             list.Insert(index, tokens[2]);
             return list.ToString();
+        }
+
+        static string ExecuteDelete(CustomList<string> list, string[] tokens)
+        {
+            if (tokens.Length != 2)
+            {
+                throw new ArgumentException("Error: invalid command parameters");
+            }
+
+            string receivedIndex = tokens[1];
+            int index;
+            if (!int.TryParse(receivedIndex, out index) || (index < 0 || index > list.Count - 1))
+            {
+                throw new ArgumentException($"Error: invalid index {receivedIndex}");
+            }
+
+            list.Delete(index);
+            return list.ToString();
+
         }
 
     }
