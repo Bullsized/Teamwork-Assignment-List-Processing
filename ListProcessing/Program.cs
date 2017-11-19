@@ -13,10 +13,16 @@ namespace ListProcessing
             while ((command = Console.ReadLine()) != "end")
             {
                 var tokens = command.Split();
+                var commandWord = tokens[0];
+
+                if (commandWord == "roll" && tokens.Length == 2)
+                {
+                    commandWord = command;
+                }
 
                 try
                 {
-                    switch (tokens[0])
+                    switch (commandWord)
                     {
                         case "append":
                             Console.WriteLine(ExexuteAppend(list, tokens));
@@ -33,6 +39,9 @@ namespace ListProcessing
                             break;
                         case "delete":
                             Console.WriteLine(ExecuteDelete(list, tokens));
+                            break;
+                        case "roll left":
+                            Console.WriteLine(list.RollLeft());
                             break;
                         default:
                             throw new Exception("Error: invalid command");

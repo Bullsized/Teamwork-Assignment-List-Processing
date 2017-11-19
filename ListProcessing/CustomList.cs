@@ -26,6 +26,18 @@ namespace ListProcessing
             return this.ToString();
         }
 
+        public string RollLeft()
+        {
+            if (this.Count <= 1)
+            {
+                return this.ToString();
+            }
+            var firstElement = this[0];
+            this.RemoveAt(0);
+            this.Add(firstElement);
+            return this.ToString();
+        }
+
         public override string ToString()
         {
             return String.Join(" ", this);
