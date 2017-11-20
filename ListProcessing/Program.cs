@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ListProcessing.Commands;
+using ListProcessing.Extensions;
+using ListProcessing.Factories;
+using System;
+using System.Linq;
 
 namespace ListProcessing
 {
@@ -16,39 +20,61 @@ namespace ListProcessing
 
                 try
                 {
-                    switch (tokens[0])
+                    string commandName = string.Empty;
+                    string[] resultTokens = null;
+                    if (tokens.Length > 1)
                     {
-                        case "append":
-                            Console.WriteLine(ExexuteAppend(list, tokens));
-                            break;
-                        case "prepend":
-                            Console.WriteLine(ExecutePrepend(list, tokens));
-                            break;
-                        case "reverse":
-                            list.Reverse();
-                            Console.WriteLine(list);
-                            break;
-                        case "insert":
-                            Console.WriteLine(ExacuteInsert(list, tokens));
-                            break;
-                        case "delete":
-                            Console.WriteLine(ExecuteDelete(list, tokens));
-                            break;
-                        case "roll left":
-                            Console.WriteLine(list.RollLeft());
-                            break;
-                        case "roll right":
-                            Console.WriteLine(list.RollRight());
-                            break;
-                        case "sort":
-                            SortingCheckAndPrint(list, tokens);
-                            break;
-                        case "count":
-                            Console.WriteLine(CountTheWord(list, tokens[1]));
-                            break;
-                        default:
-                            throw new Exception("Error: invalid command");
+                        if (tokens[1].ToLower() == "left" || tokens[1].ToLower() == "right")
+                        {
+                            commandName = tokens[0].ToTitleCase() + tokens[1].ToTitleCase();
+                            resultTokens = tokens.Skip(2).ToArray();
+                        }
+                        else
+                        {
+                            commandName = tokens[0];
+                            resultTokens = tokens.Skip(1).ToArray();
+                        }
                     }
+                    Command<string> commandInstance = CommandFactory.Create(commandName, list, resultTokens);
+                    Console.WriteLine(commandInstance.Execute());
+
+                    //switch (tokens[0])
+                    //{
+                    //    case "append":
+                    //        Console.WriteLine(ExexuteAppend(list, tokens));
+                    //        break;
+                    //    case "prepend":
+                    //        Console.WriteLine(ExecutePrepend(list, tokens));
+                    //        break;
+                    //    case "reverse":
+                    //        list.Reverse();
+                    //        Console.WriteLine(list);
+                    //        break;
+                    //    case "insert":
+                    //        Console.WriteLine(ExacuteInsert(list, tokens));
+                    //        break;
+                    //    case "delete":
+                    //        Console.WriteLine(ExecuteDelete(list, tokens));
+                    //        break;
+                    //    case "roll left":
+                    //        Console.WriteLine(list.RollLeft());
+                    //        break;
+                    //    case "roll right":
+                    //        Console.WriteLine(list.RollRight());
+                    //        break;
+                    //    case "sort":
+                    //        SortingCheckAndPrint(list, tokens);
+                    //        break;
+                    //    case "count":
+                    //        Console.WriteLine(CountTheWord(list, tokens[1]));
+                    //        break;
+                    //    default:
+                    //        throw new Exception("Error: invalid command");
+                    //}
+                }
+                catch (NullReferenceException nrex)
+                {
+                    Console.WriteLine("Error: invalid command");
                 }
                 catch (Exception ex)
                 {

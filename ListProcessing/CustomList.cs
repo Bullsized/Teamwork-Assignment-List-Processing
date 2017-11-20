@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ListProcessing
 {
@@ -49,7 +50,25 @@ namespace ListProcessing
             this.Insert(0, firstElement);
             return this.ToString();
         }
-
+        public new string Reverse()
+        {
+            this.Reverse();
+            return this.ToString();
+        }
+        public int CountWord(string word)
+        {
+            return this.ToArray().Count(e => e.Equals(word));
+        }
+        public string InsertElement(int index, T element)
+        {
+            this.Insert(index, element);
+            return this.ToString();
+        }
+        public string SortAlphabetically()
+        {
+            this.Sort();
+            return this.ToString();
+        }
         public override string ToString()
         {
             return String.Join(" ", this);
