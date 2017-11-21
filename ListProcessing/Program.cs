@@ -35,42 +35,14 @@ namespace ListProcessing
                             resultTokens = tokens.Skip(1).ToArray();
                         }
                     }
+                    else
+                    {
+                        commandName = tokens[0];
+                        resultTokens = tokens.Skip(1).ToArray();
+                    }
                     Command<string> commandInstance = CommandFactory.Create(commandName, list, resultTokens);
                     Console.WriteLine(commandInstance.Execute());
 
-                    //switch (tokens[0])
-                    //{
-                    //    case "append":
-                    //        Console.WriteLine(ExexuteAppend(list, tokens));
-                    //        break;
-                    //    case "prepend":
-                    //        Console.WriteLine(ExecutePrepend(list, tokens));
-                    //        break;
-                    //    case "reverse":
-                    //        list.Reverse();
-                    //        Console.WriteLine(list);
-                    //        break;
-                    //    case "insert":
-                    //        Console.WriteLine(ExacuteInsert(list, tokens));
-                    //        break;
-                    //    case "delete":
-                    //        Console.WriteLine(ExecuteDelete(list, tokens));
-                    //        break;
-                    //    case "roll left":
-                    //        Console.WriteLine(list.RollLeft());
-                    //        break;
-                    //    case "roll right":
-                    //        Console.WriteLine(list.RollRight());
-                    //        break;
-                    //    case "sort":
-                    //        SortingCheckAndPrint(list, tokens);
-                    //        break;
-                    //    case "count":
-                    //        Console.WriteLine(CountTheWord(list, tokens[1]));
-                    //        break;
-                    //    default:
-                    //        throw new Exception("Error: invalid command");
-                    //}
                 }
                 catch (NullReferenceException nrex)
                 {

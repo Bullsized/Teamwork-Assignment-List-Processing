@@ -21,14 +21,7 @@ namespace ListProcessing.Factories
             Command<T> instance = null;
             if (type != null)
             {
-                if (tokens.Count == 1)
-                {
-                    instance = Activator.CreateInstance(constructedType, new object[] { list, -1, tokens[0] }) as Command<T>;
-                }
-                else
-                {
-                    instance = Activator.CreateInstance(constructedType, new object[] { list, int.Parse(tokens[0]), tokens[1] }) as Command<T>;
-                }
+                instance = Activator.CreateInstance(constructedType, new object[] { list, tokens }) as Command<T>;
             }
             return instance;
         }

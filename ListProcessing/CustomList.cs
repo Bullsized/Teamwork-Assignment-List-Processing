@@ -50,7 +50,7 @@ namespace ListProcessing
             this.Insert(0, firstElement);
             return this.ToString();
         }
-        public new string Reverse()
+        public string CustomReverse()
         {
             this.Reverse();
             return this.ToString();

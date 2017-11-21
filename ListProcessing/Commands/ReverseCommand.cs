@@ -6,13 +6,18 @@ namespace ListProcessing.Commands
 {
     public class ReverseCommand<T> : Command<T>
     {
-        public ReverseCommand(CustomList<T> target, int index, T value) : base(target, index, value)
+        public ReverseCommand(CustomList<T> target, IList<T> tokens) : base(target, tokens)
         {
         }
 
         public override string Execute()
         {
-            return target.Reverse();
+            if (tokens.Count != 0)
+            {
+                throw new Exception("Error: invalid command parameters");
+            }
+
+            return target.CustomReverse();
         }
     }
 }

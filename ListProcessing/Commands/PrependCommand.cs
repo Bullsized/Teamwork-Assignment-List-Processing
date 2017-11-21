@@ -6,13 +6,18 @@ namespace ListProcessing.Commands
 {
     public class PrependCommand<T> : Command<T>
     {
-        public PrependCommand(CustomList<T> target, int index, T value) : base(target, index, value)
+        public PrependCommand(CustomList<T> target, IList<T> tokens) : base(target, tokens)
         {
         }
 
         public override string Execute()
         {
-            return target.Prepend(value);
+            if(this.tokens.Count != 1)
+            {
+                throw new Exception("Error: invalid command parameters");
+            }
+
+            return target.Prepend(tokens[0]);
         }
     }
 }

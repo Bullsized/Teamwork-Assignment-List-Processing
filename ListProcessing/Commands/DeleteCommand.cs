@@ -6,13 +6,23 @@ namespace ListProcessing.Commands
 {
     public class DeleteCommand<T> : Command<T>
     {
-        public DeleteCommand(CustomList<T> target, int index, T value) : base(target, index, value)
+        public DeleteCommand(CustomList<T> target, IList<T> tokens) : base(target, tokens)
         {
         }
 
         public override string Execute()
         {
-            return target.Delete(this.index);
+            if (tokens.Count != 1 || !int.TryParse(this.tokens[0].ToString(), out int index))
+            {
+                throw new Exception("Error: invalid command parameters");
+            }
+
+            if (index < 0 || index > target.Count - 1)
+            {
+                throw new Exception($"Error: invalid index {index}");
+            }
+
+            return target.Delete(index);
         }
     }
 }

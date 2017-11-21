@@ -6,13 +6,18 @@ namespace ListProcessing.Commands
 {
     public class CountCommand<T> : Command<T>
     {
-        public CountCommand(CustomList<T> target, int index, T value) : base(target, index, value)
+        public CountCommand(CustomList<T> target, IList<T> tokens) : base(target, tokens)
         {
         }
 
         public override string Execute()
         {
-           return target.CountWord(value.ToString()).ToString();
+            if (tokens.Count != 1)
+            {
+                throw new Exception("Error: invalid command parameters");
+            }
+
+            return target.CountWord(this.tokens[0].ToString()).ToString();
         }
     }
 }

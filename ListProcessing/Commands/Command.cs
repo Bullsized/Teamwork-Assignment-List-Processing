@@ -7,13 +7,11 @@ namespace ListProcessing.Commands
     public abstract class Command<T>
     {
         protected CustomList<T> target;
-        protected T value;
-        protected int index;
-        public Command(CustomList<T> target, int index, T value)
+        protected IList<T> tokens;
+        public Command(CustomList<T> target, IList<T> tokens)
         {
             this.target = target;
-            this.value = value;
-            this.index = index;
+            this.tokens = tokens;
         }
 
         public abstract string Execute();
